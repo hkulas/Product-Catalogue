@@ -1,2 +1,2 @@
 # Product-Catalogue
-Simple product catalogue
+Product catalogue
