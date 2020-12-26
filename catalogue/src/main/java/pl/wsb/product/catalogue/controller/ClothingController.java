@@ -12,25 +12,26 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/clothing")
 public class ClothingController {
 
     @Autowired
     ClothingService clothingService;
 
-    @PostMapping("/clothing")
+    @PostMapping()
     public ResponseEntity<Clothing> save(@Valid @RequestBody Clothing clothing){
-        clothingService.save(clothing);
-        return ResponseEntity.ok(clothing);
+        return ResponseEntity.ok(clothingService.save(clothing));
     }
-    @GetMapping("/clothing")
+    @GetMapping()
     public ResponseEntity<List<Clothing>> findAll(){
-        List<Clothing> clothingList = clothingService.findALl();
-        return ResponseEntity.ok(clothingList);
+        return ResponseEntity.ok(clothingService.findALl());
     }
     @GetMapping("/{id}")
     public ResponseEntity<Clothing> findById(@PathVariable String id){
-        Clothing clothingByCategory = clothingService.findById(id);
-                return ResponseEntity.ok(clothingByCategory);
+        return ResponseEntity.ok(clothingService.findById(id));
+    }
+    @GetMapping()
+    public ResponseEntity<List<Clothing>> findByCategory(@RequestParam String category){
+        return ResponseEntity.ok(clothingService.findByCategory(category));
     }
 }

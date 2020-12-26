@@ -14,7 +14,7 @@ public class ClothingService {
     private ClothingRepository clothingRepository;
 
 
-    public Clothing findByCategory(String category){
+    public List<Clothing> findByCategory(String category){
         return clothingRepository.findByCategory(category);
     }
 
