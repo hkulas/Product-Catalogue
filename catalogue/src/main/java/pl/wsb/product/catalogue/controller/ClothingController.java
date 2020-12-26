@@ -29,8 +29,8 @@ public class ClothingController {
         return ResponseEntity.ok(clothingList);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Clothing> findByCategory(@PathVariable String category){
-        Clothing clothingByCategory = clothingService.findByCategory(category);
+    public ResponseEntity<Clothing> findById(@PathVariable String id){
+        Clothing clothingByCategory = clothingService.findById(id);
                 return ResponseEntity.ok(clothingByCategory);
     }
 }

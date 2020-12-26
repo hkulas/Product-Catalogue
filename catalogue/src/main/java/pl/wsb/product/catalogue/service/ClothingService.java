@@ -18,6 +18,10 @@ public class ClothingService {
         return clothingRepository.findByCategory(category);
     }
 
+    public Clothing findById(String id){
+        return clothingRepository.findById(id).orElse(null);
+    }
+
     public List<Clothing> findALl(){
         return clothingRepository.findAll();
     }
