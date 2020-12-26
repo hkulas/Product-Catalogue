@@ -30,7 +30,7 @@ public class ClothingController {
     public ResponseEntity<Clothing> findById(@PathVariable String id){
         return ResponseEntity.ok(clothingService.findById(id));
     }
-    @GetMapping()
+    @GetMapping("/category")
     public ResponseEntity<List<Clothing>> findByCategory(@RequestParam String category){
         return ResponseEntity.ok(clothingService.findByCategory(category));
     }
