@@ -11,6 +11,7 @@ import pl.wsb.product.catalogue.model.ShopLocation;
 import pl.wsb.product.catalogue.repository.ShopLocationRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShopLocationService{
@@ -33,12 +34,18 @@ public class ShopLocationService{
         return shopLocationRepository.findAll();
     }
 
-    //    public ShopLocation findByPosition(Point point){
-//        return shopLocationRepository.findByPosition(point);
-//    }
-//
-    public List<ShopLocation> findByLocationNear(Point point){
-        return shopLocationRepository.findByLocationNear(point, new Distance(50, Metrics.KILOMETERS));
+    public ShopLocation findById(String id){
+        return shopLocationRepository.findById(id).orElse(null);
+
+    }
+
+
+    public GeoResults<ShopLocation> findByLocationNear(Point point, Double distance){
+        Optional<Double> distanceOptional = Optional.ofNullable(distance);
+        if(distanceOptional.isEmpty()){
+            distance = 0.0;
+        }
+        return shopLocationRepository.findByLocationNear(point, new Distance(distance, Metrics.KILOMETERS));
     }
 
 
