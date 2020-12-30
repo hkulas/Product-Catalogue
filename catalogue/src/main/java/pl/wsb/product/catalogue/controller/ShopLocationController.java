@@ -29,8 +29,8 @@ public class ShopLocationController {
         return ResponseEntity.ok(shopLocationService.findAll());
     }
 
-    @GetMapping("/near/{point}")
-    public ResponseEntity<GeoResults<ShopLocation>> findByLocationNear(@PathVariable Point point,
+    @GetMapping("/near")
+    public ResponseEntity<GeoResults<ShopLocation>> findByLocationNear(@RequestParam Point point,
                                                                        @RequestParam(required = false) Double distance) {
         return ResponseEntity.ok(shopLocationService.findByLocationNear(point, distance));
     }
