@@ -40,7 +40,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.findByCategory(body.getCategories()));
     }
     @GetMapping("/search")
-    public ResponseEntity<List<Product>> search(@RequestParam String searchText){
+    public ResponseEntity<List<Document>> search(@RequestParam String searchText){
         return ResponseEntity.ok(productService.search(searchText));
     }
 }

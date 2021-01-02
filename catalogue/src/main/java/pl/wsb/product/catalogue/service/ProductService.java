@@ -21,7 +21,7 @@ public class ProductService {
         return customRepo.findByCategories(categories);
     }
 
-    public List<Product> search(String searchText){
+    public List<Document> search(String searchText){
         return customRepo.findProductBySearchText(searchText);
     }
 
