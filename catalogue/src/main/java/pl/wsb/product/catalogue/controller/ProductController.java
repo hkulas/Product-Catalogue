@@ -23,6 +23,8 @@ public class ProductController {
 
     @PostMapping()
     public ResponseEntity<Product> save(@Valid @RequestBody Product clothing){
+        System.out.println("ELO");
+        System.out.println(clothing);
         return ResponseEntity.ok(productService.save(clothing));
     }
     @GetMapping()

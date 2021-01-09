@@ -2,6 +2,7 @@ package pl.wsb.product.catalogue.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
@@ -22,6 +23,8 @@ public class Product {
     private String name;
     @NotEmpty
     private List<String> photosUrls;
+
+    private String description;
 
     private Map<String, Integer> sizes;
     private Map<String, String> otherParameters;
