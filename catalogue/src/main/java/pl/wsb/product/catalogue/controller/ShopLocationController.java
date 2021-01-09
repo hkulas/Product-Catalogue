@@ -29,15 +29,22 @@ public class ShopLocationController {
         return ResponseEntity.ok(shopLocationService.findAll());
     }
 
-    @GetMapping("/near/{point}")
-    public ResponseEntity<GeoResults<ShopLocation>> findByLocationNear(@PathVariable Point point,
+    @GetMapping("/near")
+    public ResponseEntity<GeoResults<ShopLocation>> findByLocationNear(@RequestParam Double x,
+                                                                       @RequestParam Double y,
                                                                        @RequestParam(required = false) Double distance) {
-        return ResponseEntity.ok(shopLocationService.findByLocationNear(point, distance));
+        return ResponseEntity.ok(shopLocationService.findByLocationNear(new Point(x,y), distance));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ShopLocation> findById(@PathVariable String id) {
         return ResponseEntity.ok(shopLocationService.findById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
+        shopLocationService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

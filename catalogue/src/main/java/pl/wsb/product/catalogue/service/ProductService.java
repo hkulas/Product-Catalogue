@@ -1,5 +1,6 @@
 package pl.wsb.product.catalogue.service;
 
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.wsb.product.catalogue.model.Product;
@@ -16,11 +17,11 @@ public class ProductService {
     @Autowired
     private CustomProductRepository customRepo;
 
-    public List<Product> findByCategory(String category){
-        return clothingRepository.findByCategory(category);
+    public List<Document> findByCategory(List<String> categories){
+        return customRepo.findByCategories(categories);
     }
 
-    public List<Product> search(String searchText){
+    public List<Document> search(String searchText){
         return customRepo.findProductBySearchText(searchText);
     }
 
