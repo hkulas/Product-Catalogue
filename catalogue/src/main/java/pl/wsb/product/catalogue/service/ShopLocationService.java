@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 import pl.wsb.product.catalogue.model.ShopLocation;
 import pl.wsb.product.catalogue.repository.ShopLocationRepository;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ShopLocationService{
+public class ShopLocationService {
 
     @Autowired
     private ShopLocationRepository shopLocationRepository;
@@ -22,30 +23,37 @@ public class ShopLocationService{
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public ShopLocation save(ShopLocation shopLocation){
-
+    @PostConstruct
+    private void createGeoIndex() {
         mongoTemplate
                 .indexOps(ShopLocation.class)
                 .ensureIndex(new GeospatialIndex("location").typed(GeoSpatialIndexType.GEO_2DSPHERE));
+    }
+
+    public ShopLocation save(ShopLocation shopLocation) {
         return shopLocationRepository.save(shopLocation);
     }
 
-    public List<ShopLocation> findAll(){
+    public List<ShopLocation> findAll() {
         return shopLocationRepository.findAll();
     }
 
-    public ShopLocation findById(String id){
+    public ShopLocation findById(String id) {
         return shopLocationRepository.findById(id).orElse(null);
 
     }
 
 
-    public GeoResults<ShopLocation> findByLocationNear(Point point, Double distance){
+    public GeoResults<ShopLocation> findByLocationNear(Point point, Double distance) {
         Optional<Double> distanceOptional = Optional.ofNullable(distance);
-        if(distanceOptional.isEmpty()){
+        if (distanceOptional.isEmpty()) {
             distance = 0.0;
         }
         return shopLocationRepository.findByLocationNear(point, new Distance(distance, Metrics.KILOMETERS));
+    }
+
+    public void deleteById(String id) {
+        shopLocationRepository.deleteById(id);
     }
 
 

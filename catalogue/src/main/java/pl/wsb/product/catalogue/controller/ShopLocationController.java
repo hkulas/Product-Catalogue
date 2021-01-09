@@ -41,4 +41,10 @@ public class ShopLocationController {
         return ResponseEntity.ok(shopLocationService.findById(id));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
+        shopLocationService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
