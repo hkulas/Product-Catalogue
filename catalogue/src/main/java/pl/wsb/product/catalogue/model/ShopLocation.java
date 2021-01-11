@@ -1,6 +1,5 @@
 package pl.wsb.product.catalogue.model;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;

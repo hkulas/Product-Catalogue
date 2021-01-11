@@ -5,11 +5,7 @@ import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
-import pl.wsb.product.catalogue.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +13,6 @@ import java.util.List;
 @Repository
 public class CustomProductRepository {
 
-    @Autowired
-    MongoTemplate mongoTemplate;
     @Autowired
     MongoClient mongoClient;
 
